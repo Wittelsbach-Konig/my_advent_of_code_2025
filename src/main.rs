@@ -1,9 +1,11 @@
 use std::{
     error::Error,
-    fs::File,
+    fs::{File, read_to_string},
     io::{BufRead, BufReader},
-    path::Path,
+    path::{Path, PathBuf},
 };
+
+use aoc2025::day_1;
 
 fn read_input(path: &Path) -> Result<i32, Box<dyn Error>> {
     let file = File::open(path)?;
@@ -31,9 +33,16 @@ fn read_input(path: &Path) -> Result<i32, Box<dyn Error>> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let result = read_input(Path::new("input/input.txt"))?;
+    let result = read_input(Path::new("input/input_1.txt"))?;
 
-    println!("{result}");
+    let input_1 = read_to_string(PathBuf::from("input/input_1.txt"))?;
+
+    println!("my first solution: {}", result);
+
+    let day1 = day_1::Day::create(input_1.as_str());
+
+    println!("Day {}, part 1: {}", 1, day1.solve_part_1());
+    println!("Day {}, part 2: {}", 1, day1.solve_part_2());
 
     Ok(())
 }
