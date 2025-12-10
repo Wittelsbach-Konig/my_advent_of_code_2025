@@ -5,7 +5,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use aoc2025::day_1;
+use aoc2025::{day_1, day_2};
 
 fn read_input(path: &Path) -> Result<i32, Box<dyn Error>> {
     let file = File::open(path)?;
@@ -35,14 +35,20 @@ fn read_input(path: &Path) -> Result<i32, Box<dyn Error>> {
 fn main() -> Result<(), Box<dyn Error>> {
     let result = read_input(Path::new("input/input_1.txt"))?;
 
-    let input_1 = read_to_string(PathBuf::from("input/input_1.txt"))?;
-
     println!("my first solution: {}", result);
+
+    let input_1 = read_to_string(PathBuf::from("input/input_1.txt"))?;
 
     let day1 = day_1::Day::create(input_1.as_str());
 
     println!("Day {}, part 1: {}", 1, day1.solve_part_1());
     println!("Day {}, part 2: {}", 1, day1.solve_part_2());
+
+    let input_2 = read_to_string(PathBuf::from("input/input_2.txt"))?;
+
+    let day2 = day_2::Day::create(input_2.as_str());
+
+    println!("Day {}, part 1: {}", 1, day2.solve_part_1());
 
     Ok(())
 }
